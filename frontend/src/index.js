@@ -1,10 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import './bootstrap.min.css'
+import App from './App'
 
 // NOTHING IMPORTANT //
-import reportWebVitals from './reportWebVitals';
+// import reportWebVitals from './reportWebVitals'
 // 
 
 ReactDOM.render(
@@ -14,4 +15,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-reportWebVitals();
+// reportWebVitals();
