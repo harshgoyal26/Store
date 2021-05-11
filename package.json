@@ -1,0 +1,22 @@
+{
+  "name": "e-commerce-mern-stack",
+  "version": "1.0.0",
+  "description": "Mern E-commerce Project",
+  "main": "Server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nishthavan/MERN-Ecommerce.git"
+  },
+  "author": "Nishthavan Dahiya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nishthavan/MERN-Ecommerce/issues"
+  },
+  "homepage": "https://github.com/Nishthavan/MERN-Ecommerce#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
