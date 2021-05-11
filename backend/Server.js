@@ -1,7 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
 import products from "./Data/products.js"
-import ConnectDB from "./Database/dbconfig.js"
+import ConnectDB from "./DatabaseConfig/dbconfig.js"
 import colors from "colors"
 
 // Configurations
