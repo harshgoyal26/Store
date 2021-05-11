@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import products from "./Data/products.js"
 import ConnectDB from "./Database/dbconfig.js"
+import colors from "colors"
 
 // Configurations
 dotenv.config()
@@ -23,7 +24,10 @@ app.get("/api/products/:id", (req, res) => {
   res.send(product)
 })
 
+// Listening
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
-  console.log(`Server Running in ${process.env.NODE_ENV} mode on PORT ${PORT}`)
+  console.log(
+    `Server Running in ${process.env.NODE_ENV} mode on PORT ${PORT}`.blue.bold
+  )
 })
