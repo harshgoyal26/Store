@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Mern E-commerce Project",
   "main": "Server.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "start": "node backend/server",
     "server": "nodemon backend/server",
@@ -22,7 +22,8 @@
   "homepage": "https://github.com/Nishthavan/MERN-Ecommerce#readme",
   "dependencies": {
     "dotenv": "^9.0.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.12.8"
   },
   "devDependencies": {
     "concurrently": "^6.1.0",

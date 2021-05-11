@@ -1,10 +1,14 @@
 import express from "express"
 import dotenv from "dotenv"
 import products from "./Data/products.js"
+import ConnectDB from "./Database/dbconfig.js"
 
+// Configurations
 dotenv.config()
 const app = express()
+ConnectDB()
 
+// Routes
 app.get("/", (req, res) => {
   res.send("SERVER RUNNING")
 })
