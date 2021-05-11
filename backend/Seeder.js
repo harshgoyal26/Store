@@ -9,8 +9,8 @@ import User from "./models/userModel.js"
 import Order from "./models/orderModel.js"
 import Product from "./models/productModel.js"
 
-dotenv.config()
-ConnectDB()
+// dotenv.config()
+// ConnectDB()
 
 const importData = async () => {
   try {
@@ -47,7 +47,10 @@ const destroyData = async () => {
 }
 
 if (process.argv[2] === "-d") {
-  destroyData()
+  // destroyData()
 } else {
-  importData()
+  // importData()
 }
+console.log(
+  "Mate Are you sure if yes then Make changes in Seeder.js".red.inverse
+)

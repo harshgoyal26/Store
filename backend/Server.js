@@ -1,28 +1,17 @@
 import express from "express"
 import dotenv from "dotenv"
-import products from "./Data/products.js"
 import ConnectDB from "./DatabaseConfig/dbconfig.js"
 import colors from "colors"
+import productRoutes from "./routes/productRoutes.js"
+
+const app = express()
 
 // Configurations
 dotenv.config()
-const app = express()
 ConnectDB()
 
-// Routes
-app.get("/", (req, res) => {
-  res.send("SERVER RUNNING")
-})
-
-app.get("/api/products", (req, res) => {
-  res.send(products)
-})
-
-app.get("/api/products/:id", (req, res) => {
-  const id = req.params.id
-  const product = products.find((p) => p._id === id)
-  res.send(product)
-})
+//Routing using Router
+app.use("/api/products", productRoutes)
 
 // Listening
 const PORT = process.env.PORT || 5000
