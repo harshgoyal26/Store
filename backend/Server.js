@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import ConnectDB from "./DatabaseConfig/dbconfig.js"
 import colors from "colors"
 import productRoutes from "./routes/productRoutes.js"
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js"
 
 const app = express()
 
@@ -12,6 +13,11 @@ ConnectDB()
 
 //Routing using Router
 app.use("/api/products", productRoutes)
+
+// 404 Status error
+app.use(notFound)
+// Customized Error Handler
+app.use(errorHandler)
 
 // Listening
 const PORT = process.env.PORT || 5000
