@@ -4,6 +4,7 @@ const router = express.Router()
 import Product from "../models/productModel.js"
 
 // @ROUTE - /api/products + "whatever"
+// TRY CATCH IS NOT REQUIRED WE HAVE ERROR HANDLER
 
 // - - - - - - - - - - - - - - - - - - - - - -
 // @Desc - Fetch all products
@@ -23,7 +24,9 @@ router.get(
     if (product) {
       res.json(product)
     } else {
-      res.status(404).json({ Message: "There is no product like that" })
+      // Becausee we have created middleware to handle error now
+      res.status(404)
+      throw new Error("Product not found")
     }
   })
 )
