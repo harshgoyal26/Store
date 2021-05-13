@@ -5,8 +5,6 @@ import {
   PRODUCT_LIST_FAIL,
 } from "../constants/productConstants"
 
-// BECAUSE THUNK IS APPLIED IN STORE WE CAN USE ASYNC FUNCTION AS SECOND FUNCTION
-// WHICH WILL HAVE STORE.DISPATCH TO DISPATCH ACTIONS TO REDUCERS
 const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST })
