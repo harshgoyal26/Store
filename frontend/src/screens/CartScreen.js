@@ -11,7 +11,7 @@ import {
   Button,
   Container,
 } from "react-bootstrap"
-import { addToCart } from "../actions/cartActions"
+import { addToCart, removeFromCart } from "../actions/cartActions"
 import Message from "../components/Message"
 
 const CartScreen = ({ match, history, location }) => {
@@ -27,7 +27,7 @@ const CartScreen = ({ match, history, location }) => {
   }, [productId, qty, dispatch])
 
   const removeFromCartHandler = (id) => {
-    console.log(id)
+    dispatch(removeFromCart(id))
   }
 
   const checkoutHandler = () => {
