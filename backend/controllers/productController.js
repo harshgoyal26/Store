@@ -4,12 +4,14 @@ import Product from "../models/productModel.js"
 // @ROUTE - /api/products + "whatever"
 
 // @Desc - Fetch all products
+// @Extended Route - /
 const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({})
   res.json(products)
 })
 
 // @Desc - Fetch Product By ID
+// @Extended Route - /:id
 const getProductById = asyncHandler(async (req, res) => {
   const id = req.params.id
   const product = await Product.findById(id)
