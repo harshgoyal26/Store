@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Row, Col, Form, Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { getUserDetails } from "../actions/userActions"
+import { getUserDetails, updateUserProfile } from "../actions/userActions"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
 
@@ -18,6 +17,7 @@ const ProfileScreen = ({ location, history }) => {
 
   // If user is already Logged In access to register is revoked
   const isLogin = useSelector((state) => state.userLogin.userInfo)
+  const success = useSelector((state) => state.userUpdateProfile.success)
 
   useEffect(() => {
     if (!isLogin) {
@@ -36,6 +36,7 @@ const ProfileScreen = ({ location, history }) => {
     e.preventDefault()
     if (password === confirmPassword) {
       setMessage(null)
+      dispatch(updateUserProfile({ id: user._id, name, email, password }))
     } else {
       setMessage("Password Don't Match")
     }
@@ -47,6 +48,7 @@ const ProfileScreen = ({ location, history }) => {
         <h2>User Profile</h2>
         {message && <Message variant='danger'>{message}</Message>}
         {error && <Message variant='danger'>{error}</Message>}
+        {success && <Message variant='success'>Profile Updated</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId='name'>
