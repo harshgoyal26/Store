@@ -3,6 +3,7 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
+  USER_LOGOUT,
 } from "../constants/userConstants"
 
 const login = (email, password) => async (dispatch) => {
@@ -35,5 +36,11 @@ const login = (email, password) => async (dispatch) => {
     })
   }
 }
+const logout = () => (dispatch) => {
+  dispatch({
+    type: USER_LOGOUT,
+  })
+  localStorage.removeItem("userInfo")
+}
 
-export { login }
+export { login, logout }
