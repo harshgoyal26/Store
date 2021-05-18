@@ -1,6 +1,6 @@
 import React from "react"
 import { Col, Row, Image, ListGroup, Button, Card } from "react-bootstrap"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import Message from "../components/Message"
 import CheckoutSteps from "../components/CheckoutSteps"
