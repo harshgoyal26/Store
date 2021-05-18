@@ -31,9 +31,8 @@ const addOrderItem = asyncHandler(async (req, res) => {
       user: req.user._id,
     })
     const createdOrder = await order.save()
-    res.status(201)
-    res.json(createdOrder)
+    res.status(201).json(createdOrder)
   }
 })
 
-export default addOrderItem
+export { addOrderItem }

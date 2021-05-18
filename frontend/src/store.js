@@ -12,6 +12,7 @@ import {
   userDetailsReducer,
   userUpdateProfileReducer,
 } from "./reducers/userReducers"
+import { orderCreateReducer } from "./reducers/orderReducers"
 
 const reducers = combineReducers({
   productList: productListReducer,
@@ -21,11 +22,11 @@ const reducers = combineReducers({
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
+  orderCreate: orderCreateReducer,
 })
 
 // This initial state can be used to hold authentication token fron local storage
 // Or cart items from local storage that are already added
-
 const cartItemsFromLocalStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : []
@@ -43,6 +44,8 @@ const cartShippingAddressFromLocalStorage = localStorage.getItem(
 const paymentMethodFromLocalStorage = localStorage.getItem("paymentMethod")
   ? JSON.parse(localStorage.getItem("paymentMethod"))
   : ""
+/////////////////////////////////
+
 const initialState = {
   cart: {
     cartItems: cartItemsFromLocalStorage,

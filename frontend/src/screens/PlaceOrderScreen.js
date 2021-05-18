@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Col, Row, Image, ListGroup, Button, Card } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import Message from "../components/Message"
 import CheckoutSteps from "../components/CheckoutSteps"
+import { createOrder } from "../actions/orderActions"
 
 const PlaceOrderScreen = ({ history }) => {
   // LOGIN FIRST
@@ -16,6 +17,7 @@ const PlaceOrderScreen = ({ history }) => {
     history.push("/shipping")
   }
 
+  const dispatch = useDispatch()
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2)
   }
@@ -30,9 +32,27 @@ const PlaceOrderScreen = ({ history }) => {
   cart.totalPrice = addDecimals(
     Number(cart.taxPrice) + Number(cart.shippingPrice) + Number(cart.itemsPrice)
   )
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { order, success, error } = orderCreate
 
-  const placeOrderHandler = (e) => {
-    console.log("Order Placed !")
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/${order._id}`)
+    }
+    //eslint-disable-next-line
+  }, [history, success])
+  const placeOrderHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+      })
+    )
   }
   return (
     <>
@@ -125,7 +145,13 @@ const PlaceOrderScreen = ({ history }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col></Col>
+                  <Col>
+                    {error ? (
+                      <Message variant='danger'>{error}</Message>
+                    ) : (
+                      <></>
+                    )}
+                  </Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
