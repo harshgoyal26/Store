@@ -15,7 +15,6 @@ const ProfileScreen = ({ location, history }) => {
   const dispatch = useDispatch()
   const { loading, user, error } = useSelector((state) => state.userDetails)
 
-  // If user is already Logged In access to register is revoked
   const isLogin = useSelector((state) => state.userLogin.userInfo)
   const success = useSelector((state) => state.userUpdateProfile.success)
 

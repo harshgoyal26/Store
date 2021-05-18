@@ -8,6 +8,9 @@ import Loader from "../components/Loader"
 import FormContainer from "../components/FormContainer"
 
 const RegisterScreen = ({ location, history }) => {
+  // If user is already Logged In access to register is revoked
+  const isLogin = useSelector((state) => state.userLogin.userInfo)
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -20,9 +23,6 @@ const RegisterScreen = ({ location, history }) => {
   const { loading, userInfo, error } = useSelector(
     (state) => state.userRegister
   )
-
-  // If user is already Logged In access to register is revoked
-  const isLogin = useSelector((state) => state.userLogin.userInfo)
 
   useEffect(() => {
     if (userInfo || isLogin) {
