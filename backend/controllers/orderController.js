@@ -54,7 +54,7 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @Extended Route - /:id/pay  PUT PRIVATE
 const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
-  if (order) {
+  if (order && req.body.status == "COMPLETED") {
     order.isPaid = true
     order.paidAt = Date.now()
     order.paymentResult = {

@@ -17,6 +17,10 @@ ConnectDB()
 app.use("/api/products", productRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/orders", orderRoutes)
+
+app.get("/api/config/paypal", (req, res) =>
+  res.send(process.env.PAYPAL_CLIENTID)
+)
 // 404 Status error
 app.use(notFound)
 // Customized Error Handler
