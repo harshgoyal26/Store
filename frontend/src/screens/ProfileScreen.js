@@ -6,6 +6,7 @@ import { getUserDetails, updateUserProfile } from "../actions/userActions"
 import { getMyOrders } from "../actions/orderActions"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
+import { ORDER_DETAILS_RESET } from "../constants/orderConstants"
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState("")
@@ -26,6 +27,9 @@ const ProfileScreen = ({ location, history }) => {
   } = useSelector((state) => state.orderListMy)
 
   useEffect(() => {
+    dispatch({
+      type: ORDER_DETAILS_RESET,
+    })
     if (!isLogin) {
       history.push("/login")
     } else {

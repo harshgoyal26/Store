@@ -4,9 +4,11 @@ import {
   ORDER_CREATE_SUCCESS,
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
+  ORDER_DETAILS_RESET,
   ORDER_DETAILS_SUCCESS,
   ORDER_LIST_MY_FAIL,
   ORDER_LIST_MY_REQUEST,
+  ORDER_LIST_MY_RESET,
   ORDER_LIST_MY_SUCCESS,
   ORDER_PAY_FAIL,
   ORDER_PAY_REQUEST,
@@ -56,6 +58,12 @@ const orderDetailsReducer = (
         loading: false,
         error: action.payload,
       }
+    case ORDER_DETAILS_RESET:
+      return {
+        loading: true,
+        shippingAddress: {},
+        orderItems: [],
+      }
     default:
       return state
   }
@@ -99,6 +107,10 @@ const orderListMyReducer = (state = { orders: [] }, action) => {
       return {
         loading: false,
         error: action.payload,
+      }
+    case ORDER_LIST_MY_RESET:
+      return {
+        orders: [],
       }
     default:
       return state
