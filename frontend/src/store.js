@@ -16,6 +16,7 @@ import {
   orderCreateReducer,
   orderDetailsReducer,
   orderPayReducer,
+  orderListMyReducer,
 } from "./reducers/orderReducers"
 
 const reducers = combineReducers({
@@ -29,6 +30,7 @@ const reducers = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
+  orderListMy: orderListMyReducer,
 })
 
 // This initial state can be used to hold authentication token fron local storage
