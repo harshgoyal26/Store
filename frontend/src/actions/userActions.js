@@ -22,6 +22,9 @@ import {
   USER_DELETE_REQUEST,
   USER_DELETE_SUCCESS,
   USER_DELETE_FAIL,
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_SUCCESS,
+  USER_UPDATE_FAIL,
 } from "../constants/userConstants"
 import { ORDER_LIST_MY_RESET } from "../constants/orderConstants"
 const login = (email, password) => async (dispatch) => {
@@ -109,7 +112,6 @@ const getUserDetails = (id) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
@@ -225,6 +227,39 @@ const deleteUser = (id) => async (dispatch, getState) => {
   }
 }
 
+const updateUser = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: USER_UPDATE_REQUEST,
+    })
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+    const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+
+    dispatch({ type: USER_UPDATE_SUCCESS })
+    dispatch({
+      type: USER_DETAILS_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: USER_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
 export {
   login,
   logout,
@@ -233,4 +268,5 @@ export {
   updateUserProfile,
   getUsersList,
   deleteUser,
+  updateUser,
 }
