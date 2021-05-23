@@ -18,11 +18,9 @@ import {
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS,
   USER_LIST_FAIL,
+  USER_LIST_RESET,
 } from "../constants/userConstants"
-import {
-  ORDER_LIST_MY_RESET,
-  ORDER_DETAILS_RESET,
-} from "../constants/orderConstants"
+import { ORDER_LIST_MY_RESET } from "../constants/orderConstants"
 const login = (email, password) => async (dispatch) => {
   try {
     dispatch({
@@ -54,18 +52,11 @@ const login = (email, password) => async (dispatch) => {
   }
 }
 const logout = () => (dispatch) => {
-  dispatch({
-    type: USER_LOGOUT,
-  })
-  dispatch({
-    type: USER_DETAILS_RESET,
-  })
-  dispatch({
-    type: ORDER_LIST_MY_RESET,
-  })
-  dispatch({
-    type: USER_UPDATE_PROFILE_RESET,
-  })
+  dispatch({ type: USER_LOGOUT })
+  dispatch({ type: USER_DETAILS_RESET })
+  dispatch({ type: ORDER_LIST_MY_RESET })
+  dispatch({ type: USER_UPDATE_PROFILE_RESET })
+  dispatch({ type: USER_LIST_RESET })
   localStorage.removeItem("userInfo")
 }
 
