@@ -27,9 +27,6 @@ const ProfileScreen = ({ location, history }) => {
   } = useSelector((state) => state.orderListMy)
 
   useEffect(() => {
-    dispatch({
-      type: ORDER_DETAILS_RESET,
-    })
     if (!isLogin) {
       history.push("/login")
     } else {
