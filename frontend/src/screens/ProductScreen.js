@@ -16,8 +16,10 @@ const ProductScreen = ({ history, match }) => {
   )
 
   useEffect(() => {
-    dispatch(listProductDetails(match.params.id))
-  }, [dispatch, match])
+    if (!product.name || product._id !== match.params.id) {
+      dispatch(listProductDetails(match.params.id))
+    }
+  }, [dispatch, match, product])
 
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`)

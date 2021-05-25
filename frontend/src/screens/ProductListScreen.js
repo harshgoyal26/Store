@@ -29,7 +29,7 @@ const UsersListScreen = ({ history, match }) => {
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET })
-    if (!userInfo.isAdmin) {
+    if (!userInfo || !userInfo.isAdmin) {
       history.push("/login")
     }
 

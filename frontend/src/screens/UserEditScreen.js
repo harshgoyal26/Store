@@ -8,7 +8,7 @@ import Message from "../components/Message"
 import Loader from "../components/Loader"
 import FormContainer from "../components/FormContainer"
 
-const RegisterScreen = ({ match, history }) => {
+const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -94,4 +94,4 @@ const RegisterScreen = ({ match, history }) => {
   )
 }
 
-export default RegisterScreen
+export default UserEditScreen
