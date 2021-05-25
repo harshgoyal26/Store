@@ -10,7 +10,7 @@ const getProducts = asyncHandler(async (req, res) => {
   res.json(products)
 })
 
-// @Desc - Fetch Product By ID
+// @Desc - Fetch Product By ID GET
 // @Extended Route - /:id PUBLIC
 const getProductById = asyncHandler(async (req, res) => {
   const id = req.params.id
@@ -24,7 +24,7 @@ const getProductById = asyncHandler(async (req, res) => {
   }
 })
 
-// @Desc - Delete Product By id
+// @Desc - Delete Product By id DELETE
 // @Extended Route - /:id PRIVATE/ADMIN
 const deleteProductById = asyncHandler(async (req, res) => {
   const id = req.params.id
@@ -38,4 +38,49 @@ const deleteProductById = asyncHandler(async (req, res) => {
   }
 })
 
-export { getProductById, getProducts, deleteProductById }
+// @Desc - Create Product POST
+// @Extended Route - / PRIVATE/ADMIN
+const createProduct = asyncHandler(async (req, res) => {
+  const product = new Product({
+    name: "Sample",
+    price: 0,
+    user: req.user._id,
+    image: "/images/sample.jpg",
+    brand: "Sample",
+    category: "Sample",
+    countInStock: 0,
+    numReviews: 0,
+    description: "Sample Desc",
+  })
+  const createdProduct = await product.save()
+  res.status(201).json(createdProduct)
+})
+
+// @Desc - Update Product PUT
+// @Extended Route - /:id PRIVATE/ADMIN
+const updateProduct = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id)
+  if (product) {
+    product.name = req.body.name || product.name
+    product.price = req.body.price || product.price
+    product.image = req.body.image || product.image
+    product.brand = req.body.brand || product.brand
+    product.category = req.body.category || product.category
+    product.description = req.body.description || product.description
+    product.countInStock = req.body.countInStock || product.countInStock
+
+    const updatedProduct = await product.save()
+    res.json(updatedProduct)
+  } else {
+    res.status(404)
+    throw new Error("Product Not Found")
+  }
+})
+
+export {
+  getProductById,
+  getProducts,
+  deleteProductById,
+  createProduct,
+  updateProduct,
+}
