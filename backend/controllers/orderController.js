@@ -63,8 +63,24 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
       update_time: req.body.update_time,
       email_address: req.body.payer.email_address,
     }
-    const updatedUser = await order.save()
-    res.json(updatedUser)
+    const updatedOrder = await order.save()
+    res.json(updatedOrder)
+  } else {
+    res.status(404)
+    throw new Error("Order Not Found")
+  }
+})
+
+// @Desc - updateOrderToDelivered
+// @Extended Route - /:id/deliver  PUT PRIVATE/ADMIN
+const updateOrderToDelivered = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id)
+
+  if (order) {
+    order.isDelivered = true
+    order.deliveredAt = Date.now()
+    const updatedOrder = await order.save()
+    res.json(updatedOrder)
   } else {
     res.status(404)
     throw new Error("Order Not Found")
@@ -89,6 +105,7 @@ export {
   addOrderItem,
   getOrderById,
   updateOrderToPaid,
+  updateOrderToDelivered,
   getAllUserOrders,
   getAllOrders,
 }

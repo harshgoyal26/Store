@@ -6,6 +6,7 @@ import {
   getAllUserOrders,
   getOrderById,
   updateOrderToPaid,
+  updateOrderToDelivered,
   getAllOrders,
 } from "../controllers/orderController.js"
 
@@ -14,5 +15,6 @@ router.route("/myorders").get(protect, getAllUserOrders)
 
 router.route("/:id").get(protect, getOrderById)
 router.route("/:id/pay").put(protect, updateOrderToPaid)
+router.route("/:id/deliver").put(protect, admin, updateOrderToDelivered)
 
 export default router
