@@ -1,6 +1,7 @@
 import path from "path"
 import express from "express"
 import dotenv from "dotenv"
+import morgan from "morgan"
 import ConnectDB from "./DatabaseConfig/dbconfig.js"
 import colors from "colors"
 import productRoutes from "./routes/productRoutes.js"
@@ -9,11 +10,15 @@ import orderRoutes from "./routes/orderRoutes.js"
 import uploadRoutes from "./routes/uploadRoutes.js"
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js"
 
-const app = express()
-app.use(express.json())
 // Configurations
 dotenv.config()
 ConnectDB()
+
+const app = express()
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"))
+}
+app.use(express.json())
 
 //Routing using Router
 app.use("/api/products", productRoutes)
