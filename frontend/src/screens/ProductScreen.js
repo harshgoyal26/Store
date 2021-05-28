@@ -41,7 +41,6 @@ const ProductScreen = ({ history, match }) => {
     e.preventDefault()
     const review = { rating, comment }
     dispatch(createReview(product._id, review))
-    console.log(review)
   }
   return (
     <>
