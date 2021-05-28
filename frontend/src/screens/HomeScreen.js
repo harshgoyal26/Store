@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { Row, Col } from "react-bootstrap"
+import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import Product from "../components/Product"
 import { listProducts } from "../actions/productActions"
@@ -7,6 +8,7 @@ import Loader from "../components/Loader"
 import Message from "../components/Message"
 import Paginate from "../components/Paginate"
 import ProductCarousel from "../components/ProductCarousel"
+import Meta from "../components/Meta"
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword
@@ -22,7 +24,13 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
+      <Meta />
       {!keyword && <ProductCarousel />}
+      {keyword && (
+        <Link className='btn btn-light my-3' to='/'>
+          <i className='fas fa-arrow-left mx-2' /> Go Back
+        </Link>
+      )}
       <h1 style={{ "margin-top": "0.2rem", "margin-bottom": "0.1rem" }}>
         Latest Products
       </h1>
@@ -32,7 +40,7 @@ const HomeScreen = ({ match }) => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          <Row>
+          <Row className='mb-2'>
             {products.map((product) => (
               <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                 <Product product={product} />

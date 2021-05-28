@@ -6,6 +6,7 @@ import { getUserDetails, updateUserProfile } from "../actions/userActions"
 import { getMyOrders } from "../actions/orderActions"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
+import Meta from "../components/Meta"
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState("")
@@ -51,6 +52,7 @@ const ProfileScreen = ({ location, history }) => {
 
   return (
     <Row className='py-3'>
+      <Meta title='Profile' />
       <Col md={3}>
         <h2>User Profile</h2>
         {message && <Message variant='danger'>{message}</Message>}

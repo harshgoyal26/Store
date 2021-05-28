@@ -15,6 +15,7 @@ import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
 } from "../constants/orderConstants"
+import Meta from "../components/Meta"
 
 const OrderScreen = ({ history, match }) => {
   // LOGIN FIRST
@@ -81,6 +82,7 @@ const OrderScreen = ({ history, match }) => {
     <Message variant='danger'>{error}</Message>
   ) : (
     <>
+      <Meta title='Order' />
       <h1>Order {order._id}</h1>
       <Row>
         <Col md={8}>

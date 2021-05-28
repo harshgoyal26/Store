@@ -6,6 +6,7 @@ import { register } from "../actions/userActions"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
 import FormContainer from "../components/FormContainer"
+import Meta from "../components/Meta"
 
 const RegisterScreen = ({ location, history }) => {
   // If user is already Logged In access to register is revoked
@@ -42,6 +43,7 @@ const RegisterScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
+      <Meta title='Welcome to ProStore | Register' />
       <h1>Sign Up</h1>
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}

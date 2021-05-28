@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import FormContainer from "../components/FormContainer"
 import { savePaymentMethod } from "../actions/cartActions"
 import CheckoutSteps from "../components/CheckoutSteps"
+import Meta from "../components/Meta"
 
 const ShippingScreen = ({ history }) => {
   // LOGIN FIRST
@@ -27,6 +28,7 @@ const ShippingScreen = ({ history }) => {
 
   return (
     <>
+      <Meta title='Payment' />
       <CheckoutSteps step1 step2 step3 />
       <FormContainer>
         <h1>Payment Method</h1>

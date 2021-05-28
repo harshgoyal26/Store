@@ -24,11 +24,11 @@ const ProductCarousel = () => {
     <Carousel pause='hover' className='bg-dark'>
       {products.map((x) => (
         <Carousel.Item key={x._id}>
-          <Link to={`/products/${x._id}`}>
+          <Link to={`/product/${x._id}`}>
             <Image src={x.image} alt={x.name} fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
-                {x.name} ({x.price})
+                {x.name} ($ {x.price})
               </h2>
             </Carousel.Caption>
           </Link>
