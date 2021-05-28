@@ -13,7 +13,6 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js"
 // Configurations
 dotenv.config()
 ConnectDB()
-
 const app = express()
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"))
@@ -25,13 +24,19 @@ app.use("/api/products", productRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/orders", orderRoutes)
 app.use("/api/upload", uploadRoutes)
-
 app.get("/api/config/paypal", (req, res) =>
   res.send(process.env.PAYPAL_CLIENTID)
 )
 
 const __dirname = path.resolve()
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/build")))
+  // Run NPM RUN BUILD before setting NODE_ENV to Production
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  )
+}
 
 // 404 Status error
 app.use(notFound)
