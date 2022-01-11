@@ -47,7 +47,7 @@ const ShippingScreen = ({ history }) => {
               ></Form.Check>
             </Col>
           </Form.Group>
-          <Button type='submit' varinat='primary'>
+          <Button type='submit' variant='primary'>
             Continue
           </Button>
         </Form>
