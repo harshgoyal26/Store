@@ -43,7 +43,7 @@ const RegisterScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
-      <Meta title='Welcome to ProStore | Register' />
+      <Meta title='Welcome to RPM | Register' />
       <h1>Sign Up</h1>
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}

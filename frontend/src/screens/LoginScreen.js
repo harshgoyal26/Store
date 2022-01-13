@@ -29,7 +29,7 @@ const LoginScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
-      <Meta title='Welcome to ProStore | Login' />
+      <Meta title='Welcome to RPM | Login' />
       <h1>Sign In</h1>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
