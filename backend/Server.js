@@ -9,9 +9,8 @@ import userRoutes from "./routes/userRoutes.js"
 import orderRoutes from "./routes/orderRoutes.js"
 import uploadRoutes from "./routes/uploadRoutes.js"
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js"
+import cors from "cors";
 
-
-var cors = require('cors')
 // Configurations
 dotenv.config()
 ConnectDB()
