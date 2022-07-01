@@ -11,7 +11,7 @@ import Product from "./models/productModel.js"
 
 // dotenv.config()
 // ConnectDB()
-
+//updating git
 const importData = async () => {
   try {
     await Order.deleteMany()
